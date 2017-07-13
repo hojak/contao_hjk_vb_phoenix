@@ -1,0 +1,53 @@
+<?php    
+    
+    $separatorSelect = new \FormSelectMenu();
+    $separatorSelect->id="separator";
+    $separatorSelect->name="separator";
+    $separatorSelect->label="Feld-Trenner";
+    $separatorSelect->mandatory = true;
+    $separatorSelect->class="tl_select";
+    $separatorSelect->options = array (
+        array('value' => ";", label=>";"),
+        array('value' => ",", label=>","),
+    );
+
+?>           
+
+      
+<div id="tl_buttons">
+<a href="<?= $this->addToUrl ('key=') ?>" class="header_back" title="" accesskey="b">Zurück</a>
+</div>
+
+<?= \Message::generate() ?><?php \Message::reset() ?>
+
+
+<form action="<?= $this->acion ?>" id="<?= $this->formId ?>" class="tl_form" method="post" enctype="multipart/form-data">
+<input type="hidden" name="FORM_SUBMIT" value="<?= $this->formId ?>">
+<input type="hidden" name="REQUEST_TOKEN" value="<?= REQUEST_TOKEN ?>">    
+
+<div class="tl_formbody_edit">
+    
+    <div class="tl_tbox">
+      <h3>CSV-Datei</h3>
+      <div id="upload-fields"><input type="file" name="csv_file" required="" class="tl_upload_field" onfocus="Backend.getScrollOffset()" accept="text/csv"></div>
+      <p class="tl_help tl_tip" title="">Geben Sie eine CSV-Datei für den Import an.</p>
+      
+      <h3><label for="ctrl_separator">Feld-Trenner</label></h3>
+      <?= $separatorSelect ->generate() ?>
+      
+      
+      <h3>Abgleich-Einstellungen</h3>
+      <div id="ctrl_clear" class="tl_checkbox_single_container"><input type="hidden" name="clear" value=""><input 
+        type="checkbox" name="clear" id="opt_clear_0" class="tl_checkbox" value="1"> <label for="opt_remove_0">Alle Staffel vor dem Import löschen?</label></div>
+    </div>
+
+</div>
+
+<div class="tl_formbody_submit">
+
+<div class="tl_submit_container">
+  <input type="submit" name="save" id="save" class="tl_submit" accesskey="s" value="CSV importieren">
+</div>
+
+</div>
+</form>

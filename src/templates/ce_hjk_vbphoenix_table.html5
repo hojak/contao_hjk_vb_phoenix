@@ -1,0 +1,84 @@
+<?php $this->extend('block_searchable'); ?>
+
+<?php $this->block('content'); ?>
+
+
+<?php if ($this->downloadError): ?>
+<p class="phoenix_error">Fehler bei der Verbindung zum Ergebnisdienst!</p>
+<?php else: ?>
+
+<table class="vb_phonix_table">
+ <thead>
+  <tr>
+   <th rowspan="2">Platz</th>
+   <th rowspan="2">Team</th>
+   <th rowspan="2">Spiele</th>
+   <th rowspan="2">Punkte</th>
+   
+   <th colspan="3" class="border_both">Sätze</th>
+   
+   <th colspan="3" class="border_both">Bälle</th>
+   
+   <th colspan="6" class="border_both">Spiele</th>
+   
+  </tr>
+  <tr>
+  
+   <th class="border_left">+</th>
+   <th>-</th>
+   <th class="border_right">Diff.</th>
+   
+   <th class="border_left">+</th>
+   <th>-</th>
+   <th class="border_right">Diff.</th>
+   
+   <th class="border_left">Gew.</th>
+   <th>Verl.</th>
+   <th>3 P</th>
+   <th>2 P</th>
+   <th>1 P</th>
+   <th class="border_right">0 P</th>
+  </tr>
+ </thead>
+ <tbody>
+
+<?php $count = 0; foreach ( $this->entries as $entry ): 
+    $count ++;
+    $classes = array ();
+    if ( $entry->team == $this->hjk_vbphoenix_team ) $classes[] = "myteam";
+    if ( $count == 1) $classes[] = 'first';
+    if ( $count == 2) $classes[] = 'second';
+    
+    if ( $count == sizeof ( $this->entries ) -2) $classes[] = "relegation";
+    if ( $count >= sizeof ( $this->entries ) -1) $classes[] = "relegated";
+?>
+  <tr class="<?= implode (" ", $classes ) ?>">
+   <td class="number"><?= $entry->position ?></th>
+   <td><?= $entry->team ?></th>
+   <td class="number"><?= $entry->matches ?></th>
+   <td class="number"><?= $entry->p3_points ?></th>
+   <td class="number border_left"><?= $entry->sets_pos ?></th>
+   <td class="number"><?= $entry->sets_neg ?></th>
+   <td class="number border_right"><?= $entry->sets_pos - $entry->sets_neg ?></th>
+   <td class="number border_left"><?= $entry->rallies_pos ?></th>
+   <td class="number"><?= $entry->rallies_neg ?></th>
+   <td class="number border_right"><?= $entry->rallies_pos - $entry->rallies_neg ?></th>
+   <td class="number border_left"><?= $entry->p3_wins ?></th>
+   <td class="number"><?= $entry->p3_losses ?></th>
+   <td class="number"><?= $entry->p3_wins_3031 ?></th>
+   <td class="number"><?= $entry->p3_wins_32 ?></th>
+   <td class="number"><?= $entry->p3_losses_23 ?></th>
+   <td class="number border_right"><?= $entry->p3_losses_0313 ?></th>
+  </tr>
+<?php endforeach; ?>
+ </tbody>
+</table>
+
+<p class="vb_phoenix_update_hint">Stand: <?= $this->parseDate ( "d.m.Y H:i" , $this->download->date_download) ?></p>
+
+<?php endif; ?>
+
+
+<?php $this->endblock(); ?>
+
+
