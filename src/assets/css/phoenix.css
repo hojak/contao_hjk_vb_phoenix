@@ -1,0 +1,74 @@
+/* line 11, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results .phoenix_schedule_entry, .ce_hjk_vbphoenix_schedule .phoenix_schedule_entry, .ce_hjk_vbphoenix_table .phoenix_schedule_entry {
+  margin-bottom: 1em;
+}
+/* line 16, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results div.phoenix_result div, .ce_hjk_vbphoenix_schedule div.phoenix_result div, .ce_hjk_vbphoenix_table div.phoenix_result div {
+  display: inline-block;
+  margin-right: 5px;
+}
+/* line 21, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results div.phoenix_result .phoenix_rallies_sum:before, .ce_hjk_vbphoenix_schedule div.phoenix_result .phoenix_rallies_sum:before, .ce_hjk_vbphoenix_table div.phoenix_result .phoenix_rallies_sum:before {
+  content: '(';
+}
+/* line 25, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results div.phoenix_result .phoenix_rallies_sum:after, .ce_hjk_vbphoenix_schedule div.phoenix_result .phoenix_rallies_sum:after, .ce_hjk_vbphoenix_table div.phoenix_result .phoenix_rallies_sum:after {
+  content: ')';
+}
+/* line 29, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results div.phoenix_result div.phoenix_result_details, .ce_hjk_vbphoenix_schedule div.phoenix_result div.phoenix_result_details, .ce_hjk_vbphoenix_table div.phoenix_result div.phoenix_result_details {
+  display: block;
+}
+/* line 34, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results div.phoenix_set, .ce_hjk_vbphoenix_schedule div.phoenix_set, .ce_hjk_vbphoenix_table div.phoenix_set {
+  display: inline-block;
+  margin-right: 5px;
+}
+/* line 40, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results .phoenix_win, .ce_hjk_vbphoenix_results .phoenix_won, .ce_hjk_vbphoenix_schedule .phoenix_win, .ce_hjk_vbphoenix_schedule .phoenix_won, .ce_hjk_vbphoenix_table .phoenix_win, .ce_hjk_vbphoenix_table .phoenix_won {
+  font-weight: bold;
+}
+/* line 44, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results .phoenix_myteam, .ce_hjk_vbphoenix_schedule .phoenix_myteam, .ce_hjk_vbphoenix_table .phoenix_myteam {
+  color: #286790;
+}
+/* line 50, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results table, .ce_hjk_vbphoenix_schedule table, .ce_hjk_vbphoenix_table table {
+  border-collapse: collapse;
+}
+/* line 53, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results table thead tr:last-child, .ce_hjk_vbphoenix_schedule table thead tr:last-child, .ce_hjk_vbphoenix_table table thead tr:last-child {
+  border-bottom: 1px solid #286790;
+}
+/* line 57, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results table th, .ce_hjk_vbphoenix_schedule table th, .ce_hjk_vbphoenix_table table th {
+  background-color: #C4D1E0;
+}
+/* line 61, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results table td, .ce_hjk_vbphoenix_results table th, .ce_hjk_vbphoenix_schedule table td, .ce_hjk_vbphoenix_schedule table th, .ce_hjk_vbphoenix_table table td, .ce_hjk_vbphoenix_table table th {
+  padding: 3px 10px;
+}
+/* line 65, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results table .phoenix_rallies_vs, .ce_hjk_vbphoenix_schedule table .phoenix_rallies_vs, .ce_hjk_vbphoenix_table table .phoenix_rallies_vs {
+  padding: 3px 0;
+}
+/* line 69, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results table .phoenix_game_id, .ce_hjk_vbphoenix_schedule table .phoenix_game_id, .ce_hjk_vbphoenix_table table .phoenix_game_id {
+  text-align: right;
+}
+/* line 77, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results table.phoenix_table td.number, .ce_hjk_vbphoenix_schedule table.phoenix_table td.number, .ce_hjk_vbphoenix_table table.phoenix_table td.number {
+  text-align: right;
+}
+/* line 82, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results table.phoenix_table .border_left, .ce_hjk_vbphoenix_results table.phoenix_table .border_both, .ce_hjk_vbphoenix_schedule table.phoenix_table .border_left, .ce_hjk_vbphoenix_schedule table.phoenix_table .border_both, .ce_hjk_vbphoenix_table table.phoenix_table .border_left, .ce_hjk_vbphoenix_table table.phoenix_table .border_both {
+  border-left: 1px solid #286790;
+}
+/* line 86, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results table.phoenix_table .border_right, .ce_hjk_vbphoenix_results table.phoenix_table .border_both, .ce_hjk_vbphoenix_schedule table.phoenix_table .border_right, .ce_hjk_vbphoenix_schedule table.phoenix_table .border_both, .ce_hjk_vbphoenix_table table.phoenix_table .border_right, .ce_hjk_vbphoenix_table table.phoenix_table .border_both {
+  border-right: 1px solid #286790;
+}
+/* line 91, ../sass/phoenix.scss */
+.ce_hjk_vbphoenix_results table.phoenix_table tbody tr:last-child td, .ce_hjk_vbphoenix_schedule table.phoenix_table tbody tr:last-child td, .ce_hjk_vbphoenix_table table.phoenix_table tbody tr:last-child td {
+  border-bottom: 1px solid #286790;
+}

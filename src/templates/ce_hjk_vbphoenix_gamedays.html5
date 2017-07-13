@@ -1,0 +1,69 @@
+<?php $this->extend('block_searchable'); ?>
+
+<?php $this->block('content'); ?>
+
+
+<?php if ($this->downloadError): ?>
+<p class="phoenix_error">Fehler bei der Verbindung zum Ergebnisdienst!</p>
+<?php else: ?>
+
+
+<?php foreach ( $this->entries as $day => $games ) : ?>
+<h2 class="phoenix_gameday"><?= $day ?>. Spieltag</h2>
+
+
+<table class="phoenix_game_table">
+ <thead>
+  <tr>
+   <th>Nr.</th>
+   <th>Datum</th>
+   <th>Start</th>
+   <th colspan="3">Begegnung</th>
+   <th colspan="3">Ergebnis</th>
+   <th colspan="3">Satz 1</th>
+   <th colspan="3">Satz 2</th>
+   <th colspan="3">Satz 3</th>
+   <th colspan="3">Satz 4</th>
+   <th colspan="3">Satz 5</th>
+  </tr>
+ <thead>
+ <tbody>
+ 
+<?php foreach ( $games as $entry ): 
+    $classes = array ();
+    if ( $this->team == $entry->team_home) $classes [] = "phoenix_team_home";
+    if ( $this->team == $entry->team_guest) $classes [] = "phoenix_team_guest";
+    if ( $entry->hasWon ( $this->team )) $classes [] = "phoenix_team_win";
+    if ( $entry->hasLost ( $this->team )) $classes [] = "phoenix_team_lost";
+  ?>
+  <tr <?= $classes ? ' class="' . implode(" ", $classes) . '"' : '' ?>>
+   <td class="phoenix_game_id"><?= $entry->game_id ?></td>
+   <td class="phoenix_date"><?= $this->parseDate ( "l, d.m.Y", $entry->date ) ?></td>
+   <td class="pheonix_time"><?= $this->parseDate ("H:i", $entry->time_start) ?></td>
+   <td class="phoenix_home<?= $entry->team_home == $this->team ? ' phoenix_myteam': '' ?><?= $entry->hasHomeWon() ? ' phoenix_win': '' ?>"><?= $entry->team_home ?></td>
+   <td class="phoenix_vs">&ndash;</td>
+   <td class="phoenix_guest<?= $entry->team_guest == $this->team ? ' phoenix_myteam': '' ?><?= $entry->hasGuestWon() ? ' phoenix_win': '' ?>"><?= $entry->team_guest ?></td>
+   <td class="phoenix_sets_home<?= $entry->hasHomeWon() ? ' phoenix_win': '' ?>"><?= $entry->sets_home ?></td>
+   <td class="phoenix_sets_vs">:</td>
+   <td class="phoenix_sets_guest<?= $entry->hasGuestWon() ? ' phoenix_win': '' ?>"><?= $entry->sets_guest ?></td>
+   
+   <?php for ( $i=1; $i<= $entry->getNumberOfSets(); $i++ ): ?>
+   <td class="phoenix_rallies_home<?= $entry->hasHomeWon($i) ? ' phoenix_win': '' ?>"><?= $entry->getRalliesHome ($i) ?></td>
+   <td class="phoenix_rallies_vs">:</td>
+   <td class="phoenix_rallies_guest<?= $entry->hasGuestWon($i) ? ' phoenix_win': '' ?>"><?= $entry->getRalliesGuest ( $i ) ?></td>
+   <?php endfor; ?>
+  </tr>
+<?php endforeach; ?>
+ </tbody>
+</table>
+
+<?php endforeach; ?>
+
+<p class="vb_phoenix_update_hint">Stand: <?= $this->parseDate ( "d.m.Y H:i" , $this->download->date_download) ?></p>
+
+<?php endif; ?>
+
+
+<?php $this->endblock(); ?>
+
+

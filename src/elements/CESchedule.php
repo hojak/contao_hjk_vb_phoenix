@@ -5,11 +5,17 @@ namespace HJK\VbPhoenix;
 
 class CESchedule extends \ContentElement {
 
+        const TPL_LIST     = 'ce_hjk_vbphoenix_game_list';
+        const TPL_TABLE    = 'ce_hjk_vbphoenix_game_table';
+        const TPL_GAMEDAYS = 'ce_hjk_vbphoenix_gamedays';
+    
         /**
          * Template
          * @var string
          */
-        protected $strTemplate = 'ce_hjk_vbphoenix_schedule';
+        protected $strTemplate = self::TPL_LIST;
+        
+        
 
 
         public function generate () {
@@ -27,6 +33,19 @@ class CESchedule extends \ContentElement {
 
                 return $template->parse();
             } else {
+
+                switch ( $this->hjk_vbphoenix_display ) {
+                    case 'vbphoenix_gamedays':
+                        $this->strTemplate = self::TPL_GAMEDAYS;
+                        break;
+                    case 'vbphoenix_table':
+                        $this->strTemplate = self::TPL_TABLE;
+                        break;
+                    default:
+                }
+                
+                 $GLOBALS['TL_CSS'][] = 'system/modules/hjk_vbphoenix/assets/css/phoenix.css';
+                
                 return parent::generate();
             }
 
@@ -38,12 +57,19 @@ class CESchedule extends \ContentElement {
             $squadron = SquadronModel::findById ( $this->hjk_vbphoenix_squadron);
             
             $download = $squadron->getCurrentDownload ( "schedule", $this->hjk_vbphoenix_season);
-            
             $this->Template->squadron = $squadron;
             
             if ( $download ) {
-                if ( $this->hjk_vbphoenix_games != "all" && $this->hjk_vbphoenix_team ) {
+                
+                if ( $this->hjk_vbphoenix_display == "vbphoenix_gamedays") {
+                    $schedule = $download->getGamedaySchedule ();
+                    $entries = array ();
+                    foreach ( $schedule as $entry ) {
+                        $entries[ $entry->gameday ][] = $entry;
+                    }
+                } elseif ( $this->hjk_vbphoenix_games != "all" && $this->hjk_vbphoenix_team ) {
                     $entries= array ();
+                    
                     $team = $this->hjk_vbphoenix_team;
                     $mode = $this->hjk_vbphoenix_games;
                     

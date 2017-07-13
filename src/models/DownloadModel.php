@@ -68,4 +68,18 @@ class DownloadModel extends \Model {
     
     
     
+    
+    /**
+     * @brief get the game schedule in 'official' order
+     * @return  collection of entries
+     */
+    public function getGamedaySchedule () {
+        if ( $this->type != "schedule")
+            throw new Exception ("Gameday schedule can only be generated for schedule downloads!");
+            
+        return ScheduleEntryModel::findByPid ( $this->id, array ( "order" => "gameday, game_id, date, time_start"));
+    }
+    
+    
+    
 }

@@ -27,6 +27,8 @@ class CELeagueTable extends \ContentElement {
 
                 return $template->parse();
             } else {
+                $GLOBALS['TL_CSS'][] = 'system/modules/hjk_vbphoenix/assets/css/phoenix.css';
+                
                 return parent::generate();
             }
 

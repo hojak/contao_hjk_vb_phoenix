@@ -7,7 +7,7 @@
 <p class="phoenix_error">Fehler bei der Verbindung zum Ergebnisdienst!</p>
 <?php else: ?>
 
-<table class="vb_phonix_table">
+<table class="phoenix_table">
  <thead>
   <tr>
    <th rowspan="2">Platz</th>

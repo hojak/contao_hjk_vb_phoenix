@@ -9,7 +9,7 @@ class CEResults extends \ContentElement {
          * Template
          * @var string
          */
-        protected $strTemplate = 'ce_hjk_vbphoenix_results';
+        protected $strTemplate = 'ce_hjk_vbphoenix_game_list';
 
         public function generate () {
             
@@ -27,6 +27,8 @@ class CEResults extends \ContentElement {
 
                 return $template->parse();
             } else {
+                 $GLOBALS['TL_CSS'][] = 'system/modules/hjk_vbphoenix/assets/css/phoenix.css';
+                
                 return parent::generate();
             }
 

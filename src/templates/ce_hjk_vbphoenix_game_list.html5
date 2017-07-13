@@ -43,9 +43,9 @@
         <div class="phoenix_result_details">
         <?php for ( $i=1; $i<=$entry->getNumberOfSets(); $i++ ): ?>
             <div class="phoenix_set set_<?= $i ?>">
-                <span class="phoenix_rallies phoenix_home <?= $entry->hasHomeWon ( $i ) ? "phonix_win" : "phoenix_lost"?>"><?= $entry->getRalliesHome($i) ?></span>
+                <span class="phoenix_rallies phoenix_home <?= $entry->hasHomeWon ( $i ) ? "phoenix_win" : "phoenix_lost"?>"><?= $entry->getRalliesHome($i) ?></span>
                 <span class="phoenix_vs">:</span>
-                <span class="phoenix_rallies phoenix_guest <?= $entry->hasGuestWon ( $i ) ? "phonix_win" : "phoenix_lost"?>"><?= $entry->getRalliesGuest($i) ?></span>
+                <span class="phoenix_rallies phoenix_guest <?= $entry->hasGuestWon ( $i ) ? "phoenix_win" : "phoenix_lost"?>"><?= $entry->getRalliesGuest($i) ?></span>
             </div>
         <?php endfor; ?>
         </div>

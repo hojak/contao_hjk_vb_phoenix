@@ -61,9 +61,9 @@ abstract class AbstractResultModel extends \Model {
         $this->_initSetResults();
 
         if ( ! $set ) {
-            return $this->setsGuest > $this->setsHome;
+            return $this->sets_guest > $this->sets_home;
         } else {
-            return $this->aSetResults[$set][1] > $this->aSetResults[$set][0];
+            return $this->aSetResults[$set-1][1] > $this->aSetResults[$set-1][0];
         }
     }
     
@@ -72,6 +72,18 @@ abstract class AbstractResultModel extends \Model {
         return ! $this->hasGuestWon ( $set );
     }
 
+
+    public function hasWon ( $team, $set = false ) {
+        return ($this->team_home == $team && $this->hasHomeWon( $set ))
+            || ($this->team_guest == $team && $this->hasGuestWon( $set ));
+    }
+    
+    public function hasLost ( $team, $set = false ) {
+        return ($this->team_guest == $team && $this->hasHomeWon( $set ))
+            || ($this->team_home == $team && $this->hasGuestWon( $set ));
+    }
+    
+    
 
     
 }

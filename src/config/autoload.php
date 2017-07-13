@@ -61,6 +61,8 @@ TemplateLoader::addFiles(array(
     'be_hjk_vbphoenix_squad_upload'  => 'system/modules/hjk_vbphoenix/templates',
 
 	'ce_hjk_vbphoenix_table'         => 'system/modules/hjk_vbphoenix/templates',
-	'ce_hjk_vbphoenix_schedule'      => 'system/modules/hjk_vbphoenix/templates',
-	'ce_hjk_vbphoenix_results'       => 'system/modules/hjk_vbphoenix/templates',
+    
+	'ce_hjk_vbphoenix_game_list'     => 'system/modules/hjk_vbphoenix/templates',
+	'ce_hjk_vbphoenix_game_table'    => 'system/modules/hjk_vbphoenix/templates',
+	'ce_hjk_vbphoenix_gamedays'      => 'system/modules/hjk_vbphoenix/templates',
 ));

@@ -18,8 +18,17 @@ $GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_results_legend'] = 'Einstellung
 $GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_squadron'] = array ('Staffel','Wählen Sie die Staffel, aus der Sie Daten anzeigen möchten. (Zuvor müssen einmalig die aktuellen Staffel-Daten eingetragen werden!)');
 $GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_season'] = array ('Saison (Jahr)','Geben Sie das Start-Jahr der anzuzeigenden Saison ein.');
 $GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_games_label'] = array ('Spielanzeige','Welche Spiele sollen angezeigt werden?');
-$GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_games_all'] = 'Alle Spiele';
-$GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_games_team'] = 'Nur die Spiele des eigenen Teams';
-$GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_games_team_home'] = 'Nur die Heimspiele des eigenen Teams';
-$GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_games_team_away'] = 'Nur die Auswärtsspiele des eigenen Teams';
+$GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_games_options'] = array (
+    'all'       => 'Alle Spiele',
+    'team'      => 'Nur die Spiele des eigenen Teams',
+    'team_home' => 'Nur die Heimspiele des eigenen Teams',
+    'team_away' => 'Nur die Auswärtsspiele des eigenen Teams',
+);
+$GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_display_label'] = array ('Art der Darstellung','Wählen Sie die Art der Darstellung aus.');
+$GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_display_options'] = array (
+    'vbphoenix_list'     => 'Alles Spiele aufgelistet',
+    'vbphoenix_table'    => 'Tabellenform',
+    'vbphoenix_gamedays' => 'nach Spieltagen unterteilt',
+);
+
 $GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_team'] = array ('Team','Welches ist das eigene Team in der Staffel? (Zum Hervorheben oder zur Anzeige-Steuerung)');

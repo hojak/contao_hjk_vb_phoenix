@@ -1,0 +1,98 @@
+$color_dark_blue: #286790;
+$color_middle_blue: #789BBA;
+$color_light_blue: #C4D1E0;
+
+$color_home : $color_dark_blue;
+
+
+
+.ce_hjk_vbphoenix_results, .ce_hjk_vbphoenix_schedule, .ce_hjk_vbphoenix_table {
+
+    .phoenix_schedule_entry {
+        margin-bottom: 1em;
+    }
+    
+    div.phoenix_result {
+        div {
+            display: inline-block;
+            margin-right: 5px;
+        }
+        
+        .phoenix_rallies_sum:before {
+            content: '(';
+        }
+
+        .phoenix_rallies_sum:after {
+            content: ')';
+        }
+        
+        div.phoenix_result_details {
+            display: block;
+        }
+    }
+    
+    div.phoenix_set {
+        display: inline-block;
+        margin-right: 5px;
+    }
+    
+    
+    .phoenix_win, .phoenix_won {
+        font-weight: bold;
+    }
+
+    .phoenix_myteam {
+        color: $color_home;
+    }
+ 
+    
+    
+    table {
+        border-collapse: collapse;
+        
+        thead tr:last-child {
+            border-bottom: 1px solid $color_dark_blue;
+        }
+        
+        th {
+            background-color: $color_light_blue;
+        }
+        
+        td, th { 
+            padding: 3px 10px;
+        }
+        
+        .phoenix_rallies_vs {
+            padding: 3px 0;
+        }
+        
+        .phoenix_game_id {
+            text-align: right;
+        }
+    }
+    
+    
+    table.phoenix_table {
+        
+        td.number {
+            text-align: right;
+        }
+        
+        
+        .border_left, .border_both {
+            border-left: 1px solid $color_dark_blue;
+        }
+        
+        .border_right, .border_both {
+            border-right: 1px solid $color_dark_blue;
+        }
+        
+        
+        tbody tr:last-child td {
+            border-bottom: 1px solid $color_dark_blue;
+        }
+        
+    }
+}
+
+
