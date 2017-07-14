@@ -24,7 +24,7 @@
  
         "contao/core": "~3.2 || ~4.4",
  
-        "contao-community-alliance/composer-plugin": "~2.4 || ~3.0",
+        "contao-community-alliance/composer-plugin": "~2.4 || ~3.0"
     }
 
     "autoload": {
@@ -36,8 +36,8 @@
             /* sources wird immer synchronisiert, alte Dateien gelöscht, neue hinzugefügt, veränderte überschrieben */
             "sources": {
                 //"<pfad innerhalb des Repository>": "<pfad innerhalb von Contao>",
-                "src/": "system/modules/hjk_vb_phoenix/",
-            }, 
+                "src/": "system/modules/hjk_vb_phoenix/"
+            } 
         }
     }
 
