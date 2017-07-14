@@ -77,9 +77,6 @@ class BEDownloads extends \Backend {
 </div>
         ';
         
-        $xml = simplexml_load_string($download->content);
-        $result .=  "<pre>" . htmlentities( print_r ( $xml, 1)) . "</pre>";
-
         
         \Message::reset();
         
