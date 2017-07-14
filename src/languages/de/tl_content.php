@@ -27,9 +27,9 @@ $GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_games_options'] = array (
 );
 $GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_display_label'] = array ('Art der Darstellung','Wählen Sie die Art der Darstellung aus.');
 $GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_display_options'] = array (
-    'vbphoenix_list'     => 'Alles Spiele aufgelistet',
-    'vbphoenix_table'    => 'Tabellenform',
-    'vbphoenix_gamedays' => 'nach Spieltagen unterteilt',
+    'phlist'     => 'Alles Spiele aufgelistet',
+    'phtable'    => 'Tabellenform',
+    'phgamedays' => 'nach Spieltagen unterteilt',
 );
 
 $GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_team'] = array ('Team','Welches ist das eigene Team in der Staffel? (Zum Hervorheben oder zur Anzeige-Steuerung)');

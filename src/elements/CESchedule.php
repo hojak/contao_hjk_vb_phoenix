@@ -35,10 +35,10 @@ class CESchedule extends \ContentElement {
             } else {
 
                 switch ( $this->hjk_vbphoenix_display ) {
-                    case 'vbphoenix_gamedays':
+                    case 'phgamedays':
                         $this->strTemplate = self::TPL_GAMEDAYS;
                         break;
-                    case 'vbphoenix_table':
+                    case 'phtable':
                         $this->strTemplate = self::TPL_TABLE;
                         break;
                     default:
@@ -61,7 +61,7 @@ class CESchedule extends \ContentElement {
             
             if ( $download ) {
                 
-                if ( $this->hjk_vbphoenix_display == "vbphoenix_gamedays") {
+                if ( $this->hjk_vbphoenix_display == "phgamedays") {
                     $schedule = $download->getGamedaySchedule ();
                     $entries = array ();
                     foreach ( $schedule as $entry ) {
