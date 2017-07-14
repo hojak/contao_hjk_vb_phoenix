@@ -1,6 +1,6 @@
 {
     "name": "hjk/vb-phoenix",
-    "version": "0.1.0-alpha1"
+    "version": "0.1.0-alpha1",
     
     "description": "Extension providing content elements to embed volleyball results, schedules and more provided by the Phoenix result service of the WVV volleyball assisiation",
     "keywords": ["contao", "extension", "content elements", "wvv", "phoenix", "result service", "Ergebnisdienst", "volleyball"],
