@@ -24,8 +24,8 @@
     "require": {
         "php": ">=5.3",
  
-        "contao/core": ">=3.5.27|>=4.4.0",
- 
+        "contao/core-bundle" : "~3.5.27 || ~4.4", 
+        
         "contao-community-alliance/composer-plugin": "*"
     },
 
