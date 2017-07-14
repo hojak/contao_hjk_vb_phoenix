@@ -75,7 +75,7 @@ class DownloadModel extends \Model {
      */
     public function getGamedaySchedule () {
         if ( $this->type != "schedule")
-            throw new Exception ("Gameday schedule can only be generated for schedule downloads!");
+            throw new \Exception ("Gameday schedule can only be generated for schedule downloads!");
             
         return ScheduleEntryModel::findByPid ( $this->id, array ( "order" => "gameday, game_id, date, time_start"));
     }

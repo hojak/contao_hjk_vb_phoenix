@@ -2,13 +2,10 @@
 
 namespace HJK\VbPhoenix;
 
-class ResultsEntryModel extends AbstractResultModel {
+class PreviewEntryModel extends AbstractResultModel {
     
-    protected static $strTable = 'tl_hjk_vbphoenix_results_entry';
-
-
-
-
+    
+    protected static $strTable = 'tl_hjk_vbphoenix_preview_entry';
 
 
 
@@ -16,41 +13,36 @@ class ResultsEntryModel extends AbstractResultModel {
         if ( $download->status != "ok" )
             throw new \Exception ( "cannot parse error download!");
             
-        if ( $download->type != "results" )
-            throw new \Exception ( "can only parse results downloads here!");
+        if ( $download->type != "preview" )
+            throw new \Exception ( "can only parse preview downloads here!");
             
         
         $result = array ();
         $xml = simplexml_load_string($download->content);
         
         foreach ( $xml -> element as $element ) {
-            
             $date = \DateTime::createFromFormat('d.m.Y', (string) $element->datum);
             $start = \DateTime::createFromFormat('d.m.Y H:i', (string) $element->datum . " " . (string) $element->spielbeginn);
-            $opening = \DateTime::createFromFormat('d.m.Y H:i', (string) $element->datum . " " .(string) $element->hallenoeffnung);
+            $opening = \DateTime::createFromFormat('d.m.Y H:i', (string) $element->datum . " " .(string) $element->hallenoeffnung);            
             
-            $resultsEntry = new ResultsEntryModel();
-            $resultsEntry -> setRow ( array ( 
+            $previewEntry = new PreviewEntryModel();
+            $previewEntry -> setRow ( array ( 
                 'pid'          => $download->id,
                 'game_id'      => (string) $element->nr,
+                'gameday'      => (string) $element->spieltag,
                 'date'         => $date ? $date->getTimestamp() : null,
                 'time_opening' => $opening ? $opening->getTimestamp() : null,
                 'time_start'   => $start ? $start->getTimestamp() : null,
                 'team_home'    => (string) $element->heim,
                 'team_guest'   => (string) $element->gast,
-                'sets_home'    => (string) $element->sheim,
-                'sets_guest'   => (string) $element->sgast,
-                'result'       => (string) $element->result,
+                'gym'          => (string) $element->halle,
             ));
             
-            $resultsEntry->save();
-            $result[] = $resultsEntry;
+            $previewEntry->save();
+            $result[] = $previewEntry;
         }        
         
         return $result;
-
     }
-
-
     
 }

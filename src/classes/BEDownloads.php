@@ -102,6 +102,10 @@ class BEDownloads extends \Backend {
         return $this->_fetchSomething ( "results"); 
     }
 
+    public function actionFetchPreview () {
+        return $this->_fetchSomething ( "preview"); 
+    }
+
     
     protected function _fetchSomething ( $what ) {
         $season = \Input::get('season');
@@ -145,7 +149,7 @@ class BEDownloads extends \Backend {
         \Controller::loadDataContainer ('tl_hjk_vbphoenix_download');
         
         if ( ! in_array ( $type, array_keys( $GLOBALS['TL_DCA']['tl_hjk_vbphoenix_download']['fields']['type']['options']))) {
-            throw new Exception ( 'Unknown type: ' . $type );
+            throw new \Exception ( 'Unknown type: ' . $type );
         }
         
         $url = self::getUrl ( $type, $season, $squadron->phoenix_id );
@@ -191,7 +195,7 @@ class BEDownloads extends \Backend {
          \Controller::loadDataContainer ('tl_hjk_vbphoenix_download');
         
         if ( ! in_array ( $type, array_keys( $GLOBALS['TL_DCA']['tl_hjk_vbphoenix_download']['fields']['type']['options']))) {
-            throw new Exception ( 'Unknown type: ' . $type );
+            throw new \Exception ( 'Unknown type: ' . $type );
         }
         
         $url = self::getUrl ( $type, $season, $squadron->phoenix_id );
@@ -254,7 +258,7 @@ class BEDownloads extends \Backend {
         elseif ( $type == 'preview' )
             $type_part = 'vorschau';
         else {
-            throw new Exception ( "Unknown Type: " . $type );
+            throw new \Exception ( "Unknown Type: " . $type );
         }
         
         return $GLOBALS['TL_CONFIG']['hjk_vbphoenix_baseurl'] . $type_part . "_" . $season . "_" . $phoenixId . ".xml";  

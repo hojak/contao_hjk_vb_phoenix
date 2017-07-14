@@ -13,10 +13,10 @@ class TableEntryModel extends \Model {
 
     public static function parseDownload ( DownloadModel $download ) {
         if ( $download->status != "ok" )
-            throw new Exception ( "cannot parse error download!");
+            throw new \Exception ( "cannot parse error download!");
             
         if ( $download->type != "table" )
-            throw new Exception ( "can only parse table downloads here!");
+            throw new \Exception ( "can only parse table downloads here!");
             
         $result = array ();
         $xml = simplexml_load_string($download->content);

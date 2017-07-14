@@ -76,6 +76,11 @@ $GLOBALS['TL_DCA']['tl_hjk_vbphoenix_squadron'] = array
                 'href'                => 'key=down_results&season='.$GLOBALS['TL_CONFIG']['hjk_vbphoenix_season'],
                 'icon'                => 'system/modules/hjk_vbphoenix/assets/images/xml_down.png',
             ),
+            'down_preview' => array (
+                'label'               => &$GLOBALS['TL_LANG']['tl_hjk_vbphoenix_squadron']['down_preview'],
+                'href'                => 'key=down_preview&season='.$GLOBALS['TL_CONFIG']['hjk_vbphoenix_season'],
+                'icon'                => 'system/modules/hjk_vbphoenix/assets/images/xml_down.png',
+            ),
         )
     ),
 

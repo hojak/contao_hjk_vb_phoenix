@@ -34,6 +34,7 @@ ClassLoader::addClasses(array
     'HJK\\VbPhoenix\\TableEntryModel'    => 'system/modules/hjk_vbphoenix/models/TableEntryModel.php',
     'HJK\\VbPhoenix\\ScheduleEntryModel' => 'system/modules/hjk_vbphoenix/models/ScheduleEntryModel.php',
     'HJK\\VbPhoenix\\ResultsEntryModel'  => 'system/modules/hjk_vbphoenix/models/ResultsEntryModel.php',
+    'HJK\\VbPhoenix\\PreviewEntryModel'  => 'system/modules/hjk_vbphoenix/models/PreviewEntryModel.php',
     
     // BE-Modules
     'HJK\\VbPhoenix\\BESquadrons'   => 'system/modules/hjk_vbphoenix/classes/BESquadrons.php',
@@ -45,6 +46,7 @@ ClassLoader::addClasses(array
 
     // ContentElements
     'HJK\\VbPhoenix\\CELeagueTable'      => 'system/modules/hjk_vbphoenix/elements/CELeagueTable.php',
+    'HJK\\VbPhoenix\\CEPreview'          => 'system/modules/hjk_vbphoenix/elements/CEPreview.php',
     'HJK\\VbPhoenix\\CEResults'          => 'system/modules/hjk_vbphoenix/elements/CEResults.php',
     'HJK\\VbPhoenix\\CESchedule'         => 'system/modules/hjk_vbphoenix/elements/CESchedule.php',
 
@@ -60,9 +62,9 @@ ClassLoader::addClasses(array
 TemplateLoader::addFiles(array(
     'be_hjk_vbphoenix_squad_upload'  => 'system/modules/hjk_vbphoenix/templates',
 
-	'ce_hjk_vbphoenix_table'         => 'system/modules/hjk_vbphoenix/templates',
-    
-	'ce_hjk_vbphoenix_game_list'     => 'system/modules/hjk_vbphoenix/templates',
-	'ce_hjk_vbphoenix_game_table'    => 'system/modules/hjk_vbphoenix/templates',
-	'ce_hjk_vbphoenix_gamedays'      => 'system/modules/hjk_vbphoenix/templates',
+    'ce_hjk_vbphoenix_table'         => 'system/modules/hjk_vbphoenix/templates',
+
+    'ce_hjk_vbphoenix_game_list'     => 'system/modules/hjk_vbphoenix/templates',
+    'ce_hjk_vbphoenix_game_table'    => 'system/modules/hjk_vbphoenix/templates',
+    'ce_hjk_vbphoenix_gamedays'      => 'system/modules/hjk_vbphoenix/templates',
 ));

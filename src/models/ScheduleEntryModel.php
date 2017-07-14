@@ -11,10 +11,10 @@ class ScheduleEntryModel extends AbstractResultModel {
 
     public static function parseDownload ( DownloadModel $download ) {
         if ( $download->status != "ok" )
-            throw new Exception ( "cannot parse error download!");
+            throw new \Exception ( "cannot parse error download!");
             
         if ( $download->type != "schedule" )
-            throw new Exception ( "can only parse schedule downloads here!");
+            throw new \Exception ( "can only parse schedule downloads here!");
             
         
         $result = array ();

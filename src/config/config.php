@@ -14,8 +14,9 @@ array_insert ( $GLOBALS['BE_MOD'],1, array ( 'hjk_vbphoenix' => array (
         'tables'        => array ('tl_hjk_vbphoenix_squadron'),
         'upload'        => array ('\\HJK\\VbPhoenix\\SquadronUpload', 'upload'),
         'down_schedule' => array ('\\HJK\VbPhoenix\\BEDownloads', 'actionFetchSchedule'),
-        'down_table'    => array ('\\HJK\VbPhoenix\\BEDownloads', 'actionFetchTable'),
+        'down_preview'  => array ('\\HJK\VbPhoenix\\BEDownloads', 'actionFetchPreview'),
         'down_results'  => array ('\\HJK\VbPhoenix\\BEDownloads', 'actionFetchResults'),
+        'down_table'    => array ('\\HJK\VbPhoenix\\BEDownloads', 'actionFetchTable'),
 	),
 
     'hjk_vbphoenix_downloads'    =>	array (
@@ -41,6 +42,7 @@ array_insert($GLOBALS['FE_MOD']['hjk_vbphoenix'], 0, array
  **/
 array_insert ( $GLOBALS['TL_CTE']['hjk_vbphoenix'],1,array(
    'hjk_vbphoenix_table'    => '\\HJK\\VbPhoenix\\CELeagueTable',
+   'hjk_vbphoenix_preview'  => '\\HJK\\VbPhoenix\\CEPreview',
    'hjk_vbphoenix_results'  => '\\HJK\\VbPhoenix\\CEResults',
    'hjk_vbphoenix_schedule' => '\\HJK\\VbPhoenix\\CESchedule',
 ));
@@ -51,6 +53,7 @@ array_insert ( $GLOBALS['TL_CTE']['hjk_vbphoenix'],1,array(
 $GLOBALS['TL_MODELS']['tl_hjk_vbphoenix_squadron']       = 'HJK\VbPhoenix\SquadronModel';
 $GLOBALS['TL_MODELS']['tl_hjk_vbphoenix_download']       = 'HJK\VbPhoenix\DownloadModel';
 $GLOBALS['TL_MODELS']['tl_hjk_vbphoenix_table_entry']    = 'HJK\VbPhoenix\TableEntryModel';
+$GLOBALS['TL_MODELS']['tl_hjk_vbphoenix_preview_entry']  = 'HJK\VbPhoenix\PreviewEntryModel';
 $GLOBALS['TL_MODELS']['tl_hjk_vbphoenix_results_entry']  = 'HJK\VbPhoenix\ResultsEntryModel';
 $GLOBALS['TL_MODELS']['tl_hjk_vbphoenix_schedule_entry'] = 'HJK\VbPhoenix\ScheduleEntryModel';
 
