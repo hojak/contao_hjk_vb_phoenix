@@ -1,10 +1,10 @@
 {
-    "name": "hojanssen/contao_hjk_vb_phoenix",
+    "name": "hjk/vb_phoenix",
     "description": "Extension providing content elements to embed volleyball results, schedules and more provided by the Phoenix result service of the WVV volleyball assisiation",
     "keywords": ["contao", "extension", "content elements", "wvv", "phoenix", "result service", "Ergebnisdienst", "volleyball"],
     "type": "contao-module",
-    "homepage": "https://github.com/hojanssen/contao_hjk_vb_phoenix",
-    "license": "LGPL-3.0+"
+    "homepage": "https://github.com/hojak/contao_hjk_vb_phoenix",
+    "license": "LGPL-3.0+",
     
     "authors": [
         {
@@ -15,8 +15,8 @@
     ],
 
     "support":{
-        "issues":"https://github.com/hojanssen/contao_hjk_vb_phoenix/issues",
-        "source":"https://github.com/hojanssen/contao_hjk_vb_phoenix"
+        "issues":"https://github.com/hojak/contao_hjk_vb_phoenix/issues",
+        "source":"https://github.com/hojak/contao_hjk_vb_phoenix"
     },
     
     "require": {
@@ -24,10 +24,10 @@
         "php": ">=5.3",
  
         /* Contao Version */
-        "contao/core": ">=3.5.27",
+        "contao/core": "~3.2 || ~4.4",
  
         /* Das Plugin / Der Installer */
-        "contao-community-alliance/composer-plugin": "~2.0",
+        "contao-community-alliance/composer-plugin": "~2.4 || ~3.0",
  
     }
 
