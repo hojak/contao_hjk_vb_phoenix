@@ -9,10 +9,13 @@ $GLOBALS['TL_DCA']['tl_content']['palettes']['hjk_vbphoenix_schedule']  =
 $GLOBALS['TL_DCA']['tl_content']['palettes']['hjk_vbphoenix_results']  =
     '{type_legend},type,headline;{hjk_vbphoenix_results_legend},hjk_vbphoenix_squadron,hjk_vbphoenix_season,hjk_vbphoenix_games,hjk_vbphoenix_team;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
 
+
+/*
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'hjk_vbphoenix_display';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['hjk_vbphoenix_display_vbphoenix_table'] = 'hjk_vbphoenix_games';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['hjk_vbphoenix_display_vbphoenix_list']  = 'hjk_vbphoenix_games';
-    
+*/
+
 $GLOBALS['TL_DCA']['tl_content']['fields']['hjk_vbphoenix_squadron'] = array (
     'label'                   => &$GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_squadron'],
     'exclude'                 => true,
