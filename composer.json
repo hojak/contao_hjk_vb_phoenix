@@ -33,9 +33,7 @@
     
     "extra": {
         "contao": {
-            /* sources wird immer synchronisiert, alte Dateien gelöscht, neue hinzugefügt, veränderte überschrieben */
             "sources": {
-                //"<pfad innerhalb des Repository>": "<pfad innerhalb von Contao>",
                 "src/": "system/modules/hjk_vb_phoenix/"
             } 
         }
