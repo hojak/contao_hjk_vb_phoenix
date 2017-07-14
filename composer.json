@@ -20,15 +20,11 @@
     },
     
     "require": {
-        /* PHP Version */
         "php": ">=5.3",
  
-        /* Contao Version */
         "contao/core": "~3.2 || ~4.4",
  
-        /* Das Plugin / Der Installer */
         "contao-community-alliance/composer-plugin": "~2.4 || ~3.0",
- 
     }
 
     "autoload": {
