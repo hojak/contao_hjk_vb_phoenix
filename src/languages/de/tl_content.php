@@ -6,6 +6,7 @@ $GLOBALS['TL_LANG']['CTE']['hjk_vbphoenix'] = "(HJK) Phoenix-Ergebnisdienst";
 $GLOBALS['TL_LANG']['CTE']['hjk_vbphoenix_table'] = array ("Phoenix-Tabelle", "Tabelle" );
 $GLOBALS['TL_LANG']['CTE']['hjk_vbphoenix_results'] = array ("Phoenix-Ergebnisse", "Ergebnisse");
 $GLOBALS['TL_LANG']['CTE']['hjk_vbphoenix_schedule'] = array ( "Phoenix-Spielplan", "Spielplan");
+$GLOBALS['TL_LANG']['CTE']['hjk_vbphoenix_preview'] = array ( "Phoenix-Vorschau", "Vorschau");
 
 
 /** legends **/
