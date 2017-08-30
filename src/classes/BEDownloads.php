@@ -5,6 +5,118 @@ namespace HJK\VbPhoenix;
 
 class BEDownloads extends \Backend {
     
+    
+    const CREATE_FORM_ID = 'vbphoenix_create_dates';
+    const CREATE_TEMPLATE = 'be_hjk_vbphoenix_create_dates';
+    
+    public function actionCreateDates () {
+        $id = \Input::get('id');
+        $download = DownloadModel::findById ( $id );
+        
+        if ( ! $download ) {
+            error_log ( "Download " . $id . " not found!");
+            $this->redirect('contao/main.php?act=error');            
+        } else if ( $download->type != "schedule"){
+            error_log ( "Download " . $id . " ist not a schedule!");
+            $this->redirect('contao/main.php?act=error');            
+        }
+            
+        $squad = $download->getRelated ('squadron');
+        
+        if (\Input::post('FORM_SUBMIT') == self::CREATE_FORM_ID ) {
+            // do the generation
+            
+            $team = \Input::post ( 'team');
+            $calendar = \CalendarModel::findById ( \Input::post ('calendar') );
+            $home_only = \Input::post ( 'home_only');
+            
+            if ( ! $calendar) {
+                \Message::addError ("Der angegebene Kalender existiert nicht oder es wurde kein Kalender angegeben!");
+            } elseif ( ! $team ) {
+                \Message::addError ( "Es wurde kein Team ausgewählt!");
+            } else {
+                $generated = $updated = 0;
+                foreach ( $download -> getDbEntries() as $entry ) {
+                    if ( $entry->team_home == $team || ( !$home_only && $entry->team_guest == $team )) {
+                        $reference = $download->squadron . "/" . $download->season . "/" . $entry->game_id;
+                        
+                        $existing = \CalendarEventsModel::findOneBy ( 'vbphoenix_reference', $reference );
+                        if ( $existing ) {
+                            $existing->title     = $entry->team_home . " - " . $entry->team_guest;
+                            $existing->location  = $entry->gym;
+                            $existing->startTime = $entry->time_start;
+                            $existing->startDate = $entry->time_start;
+                            $existing->save();
+                            
+                            \Message::addInfo ( "Spiel ID " . $entry->game_id . " wurde aktualisiert");
+                            $updated ++;
+                        } else {
+                            $newEntry = new \CalendarEventsModel();
+                            $newEntry->pid       = $calendar->id;
+                            $newEntry->tstamp    = time();
+                            $newEntry->title     = $entry->team_home . " - " . $entry->team_guest;
+                            $newEntry->addTime   = '1';
+                            $newEntry->startTime = $entry->time_start;
+                            $newEntry->startDate = $entry->time_start;
+                            $newEntry->location  = $entry->gym;
+                            $newEntry->vbphoenix_reference = $reference;
+                            
+                            $newEntry->save();
+                            \Message::addInfo ( "Spiel ID " . $entry->game_id . " wurde neu angelegt");
+                            $generated ++;
+                        }
+                    }
+                }
+                
+                if ( $generated )
+                    \Message::addInfo ( $generated . " Einträge wurden angelegt.");
+                if ( $updated )
+                    \Message::addInfo ( $updated . " Einträge wurden aktualisiert.");
+            }
+            
+        }
+            
+        
+        $this->strTemplate = self::CREATE_TEMPLATE;
+        $this->Template  = new \BackendTemplate($this->strTemplate);
+        
+        $this->Template->action = ampersand(\Environment::get('request'));
+        $this->Template->formId = self::CREATE_FORM_ID;
+        
+        $this->Template->calendarOptions = $this->_getCalendarOptions ();
+        $this->Template->teamOptions = $this->_getTeamOptions( $download );
+        
+        $this->Template->squadron  = $squad;
+        
+        return $this->Template->parse();        
+    }
+    
+    
+    protected function _getCalendarOptions () {
+        $dbResult = $this->Database->prepare ('select id, title from tl_calendar order by title')->execute();
+        
+        if ( $dbResult->numRows == 0 ) {
+            return array ("0" => "Bitte legen Sie erst einen entsprechenden Kalender an!");
+        }
+        
+        $result = array ();
+        while ( $dbResult->next() )
+            $result[] =  array ( "value" => $dbResult->id, "label" => $dbResult->title) ;
+            
+        return $result;
+    }
+    
+    
+    protected function _getTeamOptions ( $download ) {
+        $result = array ();
+        foreach ( $download->getTeams() as $team )
+            $result[] = array ( "value" => $team, "label" => $team );
+            
+        return $result;
+    }
+    
+
+    
 
     public function showDownload () {
         $id = \Input ::get('id');

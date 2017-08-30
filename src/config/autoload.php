@@ -61,10 +61,12 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array(
     'be_hjk_vbphoenix_squad_upload'  => 'system/modules/hjk_vbphoenix/templates',
-
+    'be_hjk_vbphoenix_create_dates'   => 'system/modules/hjk_vbphoenix/templates',
     'ce_hjk_vbphoenix_table'         => 'system/modules/hjk_vbphoenix/templates',
 
     'ce_hjk_vbphoenix_game_list'     => 'system/modules/hjk_vbphoenix/templates',
     'ce_hjk_vbphoenix_game_table'    => 'system/modules/hjk_vbphoenix/templates',
     'ce_hjk_vbphoenix_gamedays'      => 'system/modules/hjk_vbphoenix/templates',
+    
+    
 ));

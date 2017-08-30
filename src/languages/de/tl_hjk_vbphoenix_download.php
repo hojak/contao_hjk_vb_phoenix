@@ -19,4 +19,8 @@ $GLOBALS['TL_LANG']['tl_hjk_vbphoenix_download'] = array (
         'preview'  => 'Vorschau',
         'results'  => 'Ergebnisse',    
     ),
+    
+    'create_dates' => array ('Kalendereinträge erzeugen', 'Kalendereinträge'),
+    'delete'       => array ('Download löschen', 'Download löschen'),
+    'details'      => array ('Download ansehen', 'Download ansehen'),
 );

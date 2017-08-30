@@ -22,6 +22,8 @@ array_insert ( $GLOBALS['BE_MOD'],1, array ( 'hjk_vbphoenix' => array (
         'icon'        => 'system/modules/hjk_vbphoenix/assets/images/db_down.png',
         'tables'      => array ('tl_hjk_vbphoenix_download'),
         'details'        => array ('HJK\\VbPhoenix\\BEDownloads','showDownload'),
+        
+        'create_dates' => array ('\\HJK\VbPhoenix\\BEDownloads', 'actionCreateDates'),
 	),
 )));
 

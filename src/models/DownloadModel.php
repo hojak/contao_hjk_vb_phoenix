@@ -81,5 +81,37 @@ class DownloadModel extends \Model {
     }
     
     
+    /**
+     * @brief get a list of all teams in this download
+     * @return  
+     */
+    public function getTeams () {
+        if ( $this->status != "ok" )
+            return array ();
+                        
+        $entries = $this->getDbEntries ();    
+        $result = array ();
+        switch ( $this->type) {
+            case "schedule":
+            case "preview":
+            case "results":
+                foreach ( $entries as $entry ) {
+                    $result[] = $entry->team_home;
+                    $result[] = $entry->team_guest;
+                }
+                break;
+            case "table":
+                foreach( $entries as $entry )
+                    $result[] = $entry->team;
+                break;
+        }
+
+        $result = array_unique ( $result );
+        sort ( $result);
+        
+        return $result;
+    }
+    
+    
     
 }

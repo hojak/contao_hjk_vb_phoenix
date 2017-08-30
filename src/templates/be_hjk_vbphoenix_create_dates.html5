@@ -1,0 +1,66 @@
+<?php    
+    
+    $calendarSelect = new \FormSelectMenu();
+    $calendarSelect->id="calendar";
+    $calendarSelect->name="calendar";
+    $calendarSelect->label="Kalender";
+    $calendarSelect->mandatory = true;
+    $calendarSelect->class="tl_select";
+    $calendarSelect->options = $this->calendarOptions;
+
+
+    $teamSelect = new \FormSelectMenu();
+    $teamSelect->id="team";
+    $teamSelect->name="team";
+    $teamSelect->label="Team";
+    $teamSelect->mandatory = true;
+    $teamSelect->class="tl_select";
+    $teamSelect->options = $this->teamOptions;
+
+?>    
+
+
+<div id="tl_buttons">
+<a href="<?= $this->addToUrl ('key=') ?>" class="header_back" title="" accesskey="b">Zurück</a>
+</div>
+
+<?= \Message::generate() ?><?php \Message::reset() ?>
+
+
+<form action="<?= $this->acion ?>" id="<?= $this->formId ?>" class="tl_form" method="post" enctype="multipart/form-data">
+<input type="hidden" name="FORM_SUBMIT" value="<?= $this->formId ?>">
+<input type="hidden" name="REQUEST_TOKEN" value="<?= REQUEST_TOKEN ?>">    
+
+<div class="tl_formbody_edit">
+
+
+    <h3>Hinweis</h3>
+    <p>
+    Mit diesem Formular können aus den Daten eines heruntergeladenen Spielplans entsprechende Kalendereinträge erzeugt werden.
+    </p>
+
+    
+    <div class="tl_tbox">
+          <h3><label for="ctrl_calendar">Kalender</label></h3>
+          <?= $calendarSelect ->generate() ?>
+
+          <h3><label for="ctrl_team">Team</label></h3>
+          <?= $teamSelect ->generate() ?>
+          
+          
+          <h3>Nur Heimspiele?</h3>
+            <div id="ctrl_home_only" class="tl_checkbox_single_container"><input type="hidden" name="clear" value=""><input 
+            type="checkbox" name="home_only" id="opt_home_only_0" class="tl_checkbox" value="1"> <label for="opt_home_only_0">Sollen nur die Heimspiele des ausgewählten Teams angelegt werden?</label></div>        
+
+    </div>
+</div>
+
+<div class="tl_formbody_submit">
+
+    <div class="tl_submit_container">
+      <input type="submit" name="save" id="save" class="tl_submit" accesskey="s" value="Einträge erzeugen">
+    </div>
+
+</div>
+
+</form>

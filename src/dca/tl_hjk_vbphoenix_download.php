@@ -39,19 +39,19 @@ $GLOBALS['TL_DCA']['tl_hjk_vbphoenix_download'] = array
         ),
         'operations' => array (
             'delete' => array (
-                'label'               => &$GLOBALS['TL_LANG']['tl_hjk_vbphoenix_squadron']['delete'],
+                'label'               => &$GLOBALS['TL_LANG']['tl_hjk_vbphoenix_download']['delete'],
                 'href'                => 'act=delete',
                 'icon'                => 'delete.gif',
                 'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
             ),
             'details' => array (
-                'label'               => &$GLOBALS['TL_LANG']['tl_hjk_vbphoenix_squadron']['details'],
+                'label'               => &$GLOBALS['TL_LANG']['tl_hjk_vbphoenix_download']['details'],
                 'href'                => 'key=details',
                 'icon'                => 'system/modules/hjk_vbphoenix/assets/images/details.png',
             ),
             'create_dates' => array (                
-                'label'               => &$GLOBALS['TL_LANG']['tl_hjk_vbphoenix_squadron']['create_dates'],
-                'href'                => 'key=create_dates_select',
+                'label'               => &$GLOBALS['TL_LANG']['tl_hjk_vbphoenix_download']['create_dates'],
+                'href'                => 'key=create_dates',
                 'icon'                => 'system/modules/hjk_vbphoenix/assets/images/date_add.png',
                 'button_callback'     => array ('tl_hjk_vbphoenix_download', 'create_dates_button'),
             ),
@@ -184,7 +184,7 @@ class tl_hjk_vbphoenix_download extends \Backend {
                     return '';
             }
 
-            return '<a href="' . $this->addToUrl($href.'&amp;pn='.$row['id']) . '" title="'.specialchars($title).'">'.Image::getHtml($icon, $label).'</a> ';
+            return '<a href="' . $this->addToUrl($href.'&amp;id='.$row['id']) . '" title="'.specialchars($title).'">'.Image::getHtml($icon, $label).'</a> ';
 
         }
 }
