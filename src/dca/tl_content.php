@@ -1,13 +1,13 @@
 <?php
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['hjk_vbphoenix_table']  =
-    '{type_legend},type,headline;{hjk_vbphoenix_table_legend},hjk_vbphoenix_squadron,hjk_vbphoenix_season,hjk_vbphoenix_team;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
+    '{type_legend},type,headline;{hjk_vbphoenix_table_legend},hjk_vbphoenix_season,hjk_vbphoenix_squadron,hjk_vbphoenix_team;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
     
 $GLOBALS['TL_DCA']['tl_content']['palettes']['hjk_vbphoenix_schedule']  =
-    '{type_legend},type,headline;{hjk_vbphoenix_schedule_legend},hjk_vbphoenix_squadron,hjk_vbphoenix_season,hjk_vbphoenix_team,hjk_vbphoenix_games,hjk_vbphoenix_display;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
+    '{type_legend},type,headline;{hjk_vbphoenix_schedule_legend},hjk_vbphoenix_season,hjk_vbphoenix_squadron,hjk_vbphoenix_team,hjk_vbphoenix_games,hjk_vbphoenix_display;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
     
 $GLOBALS['TL_DCA']['tl_content']['palettes']['hjk_vbphoenix_results']  =
-    '{type_legend},type,headline;{hjk_vbphoenix_results_legend},hjk_vbphoenix_squadron,hjk_vbphoenix_season,hjk_vbphoenix_games,hjk_vbphoenix_team;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
+    '{type_legend},type,headline;{hjk_vbphoenix_results_legend},hjk_vbphoenix_season,hjk_vbphoenix_squadron,hjk_vbphoenix_games,hjk_vbphoenix_team;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space;{invisible_legend:hide},invisible,start,stop';
 
 /*
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = 'hjk_vbphoenix_display';
@@ -15,6 +15,21 @@ $GLOBALS['TL_DCA']['tl_content']['subpalettes']['hjk_vbphoenix_display_phgameday
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['hjk_vbphoenix_display_phtable'] = 'hjk_vbphoenix_games';
 $GLOBALS['TL_DCA']['tl_content']['subpalettes']['hjk_vbphoenix_display_phlist']  = 'hjk_vbphoenix_games';
 */
+
+
+$GLOBALS['TL_DCA']['tl_content']['fields']['hjk_vbphoenix_season'] = array (
+    'label'                   => &$GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_season'],
+    'exclude'                 => true,
+    'inputType'               => 'select',
+    'options_callback'        => array ('tl_content_vbphoenix', 'getSquadronSeasons'),
+    'eval'                    => array (
+        'mandatory'               => true, 
+        'includeBlankOption'      => true, 
+        'tl_class'                => 'w50', 
+        'submitOnChange'          => true
+    ),
+    'sql'                     => "int(10) unsigned NOT NULL default '0'",
+);
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['hjk_vbphoenix_squadron'] = array (
     'label'                   => &$GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_squadron'],
@@ -30,20 +45,6 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['hjk_vbphoenix_squadron'] = array (
     'sql'                     => "int(10) unsigned NOT NULL default '0'",
 );
 
-$GLOBALS['TL_DCA']['tl_content']['fields']['hjk_vbphoenix_season'] = array (
-    'label'                   => &$GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_season'],
-    'exclude'                 => true,
-    'inputType'               => 'text',
-    'eval'                    => array (
-        'mandatory' => true, 
-        'minval'    => '2015', 
-        'maxval'    => '2040', 
-        'rgxp'      => 'natural', 
-        'tl_class'  => 'w50', 
-        'submitOnChange'          => true
-    ),
-    'sql'                     => "int(6) unsigned NOT NULL default '2017'",
-);
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['hjk_vbphoenix_games'] = array (
     'label'                   => &$GLOBALS['TL_LANG']['tl_content']['hjk_vbphoenix_games_label'],
@@ -104,11 +105,17 @@ class tl_content_vbphoenix extends \Backend {
         }
                
         $squadron = HJK\VbPhoenix\SquadronModel::findById ( $currentDc->activeRecord->hjk_vbphoenix_squadron);
+        
+        if ( ! $squadron ) {
+            // somthings wrong, probable has the id table been updated!
+            error_log ( "Staffel " . $currentDc->activeRecord->hjk_vbphoenix_squadron . " gibt es nicht (mehr) - Bitte die Staffel neu auswählen!");
+            return array ();
+        }
+        
         $tableDl = $squadron->getLastTableDownload ( $currentDc->activeRecord->hjk_vbphoenix_season );
  
         if ( ! $tableDl || $tableDl->status != "ok") {
             error_log ( print_r ( $tableDl,1  ));
-            
             return array ("0" => "Fehler beim Download der Staffel!");
         }
  
@@ -124,9 +131,13 @@ class tl_content_vbphoenix extends \Backend {
     }
     
     
-    public function getSquadronOptions () {
+    public function getSquadronOptions ( $dc ) {
+        $year = $dc->activeRecord->hjk_vbphoenix_season;
         
-        $dbResult = $this->Database->prepare ( "select id, name from tl_hjk_vbphoenix_squadron order by name")->execute();
+        if ( ! $year)
+            return array ( "0" => "Bitte wählen Sie eine Saison aus, um die verfügbaren Staffeln angezeigt zu bekommen!");
+        
+        $dbResult = $this->Database->prepare ( "select id, name from tl_hjk_vbphoenix_squadron where year=? order by name")->execute( $year );
         
         if ( $dbResult->numRows == 0) {
             return array ( "0" => "Bitte fügen Sie die nötigen Staffel-Informationen hinzu oder wenden Sie sich an den Admin!");
@@ -136,6 +147,20 @@ class tl_content_vbphoenix extends \Backend {
         while ( $dbResult->next () ) {
             $result[ $dbResult->id] = $dbResult->name;
         }
+        
+        return $result;
+    }
+    
+    public function getSquadronSeasons () {
+        $dbResult = $this->Database->prepare ('select distinct year from tl_hjk_vbphoenix_squadron order by year desc')->execute();
+        
+        if ( $dbResult->numRows == 0 ) {
+            return array ("0" => "Keine Saisons gefunden. Bitte fügen Sie die nötigen Staffel-Informationen hinzu oder wenden Sich sich an den Admin!");
+        }
+        
+        $result = array ();
+        while ( $dbResult->next() )
+            $result[] = $dbResult->year;
         
         return $result;
     }

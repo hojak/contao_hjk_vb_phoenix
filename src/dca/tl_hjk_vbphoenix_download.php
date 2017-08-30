@@ -49,6 +49,12 @@ $GLOBALS['TL_DCA']['tl_hjk_vbphoenix_download'] = array
                 'href'                => 'key=details',
                 'icon'                => 'system/modules/hjk_vbphoenix/assets/images/details.png',
             ),
+            'create_dates' => array (                
+                'label'               => &$GLOBALS['TL_LANG']['tl_hjk_vbphoenix_squadron']['create_dates'],
+                'href'                => 'key=create_dates_select',
+                'icon'                => 'system/modules/hjk_vbphoenix/assets/images/date_add.png',
+                'button_callback'     => array ('tl_hjk_vbphoenix_download', 'create_dates_button'),
+            ),
         ),
     ),
 
@@ -169,5 +175,16 @@ class tl_hjk_vbphoenix_download extends \Backend {
                 $this->parseDate ('d.m.Y H:i:s', $row['date_download']),
                 $GLOBALS['TL_LANG']['tl_hjk_vbphoenix_download']['status_options'][ $row['status']]
             );
+        }
+        
+        public function create_dates_button ($row, $href, $label, $title, $icon) {
+            if ($row ['type'] != "schedule"  )
+            {
+                error_log( $row['type']);
+                    return '';
+            }
+
+            return '<a href="' . $this->addToUrl($href.'&amp;pn='.$row['id']) . '" title="'.specialchars($title).'">'.Image::getHtml($icon, $label).'</a> ';
+
         }
 }

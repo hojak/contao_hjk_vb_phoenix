@@ -2,7 +2,6 @@
 
 // standard configuration values
 $GLOBALS['TL_CONFIG']['hjk_vbphoenix_interval'] = 10;
-$GLOBALS['TL_CONFIG']['hjk_vbphoenix_season']   = date('Y');
 $GLOBALS['TL_CONFIG']['hjk_vbphoenix_baseurl']  = 'https://wvv.it4sport.de/data/vbnw/aufsteiger/public/';
 
 /**

@@ -104,11 +104,7 @@ class BEDownloads extends \Backend {
     }
 
     
-    protected function _fetchSomething ( $what ) {
-        $season = \Input::get('season');
-        if ( ! $season )
-            $season = $GLOBALS['TL_CONFIG']['hjk_vbphoenix_season'];
-            
+    protected function _fetchSomething ( $what ) {            
         $id = \Input::get('id');
         $squad = SquadronModel::findById ( $id );
         
@@ -117,6 +113,7 @@ class BEDownloads extends \Backend {
             $this->redirect('contao/main.php?act=error');
         }
         
+        $season = $squad->year;
         $result = self::fetchPhoenixData ( $squad, $season, $what );
         
         if( $result->status == "old") {

@@ -53,15 +53,18 @@ class BESquadrons extends \Backend {
                 \Message::addInfo ( "Zeile " . $lineNumber. ": ignoriert - " . implode ( $separator, $line));
                 $ignored++;
             } else {
-                try {
-                    $this->Database
-                        ->prepare ( "INSERT INTO tl_hjk_vbphoenix_squadron (tstamp, name, phoenix_id) VALUES (?,?,?)")
-                        ->execute ( time(), $line[1], $line[0]);
-                    $imported++;
-                    
-                } catch ( Exception $e ) {
-                    $errors++;
-                    \Message::addError ( "Zeile " . $lineNumber . ": Fehler beim Import: " . $e->getMessage() . " / " . implode ( $separator, $line));
+                if ( $line[0] && $line[1] && $line[2] ) {                
+                    try {
+                        $this->Database
+                            ->prepare ( "INSERT INTO tl_hjk_vbphoenix_squadron (tstamp, name, phoenix_id, year) VALUES (?,?,?,?)")
+                            ->execute ( time(), $line[2], $line[0], $line[1]);
+                        $imported++;
+                    } catch ( Exception $e ) {
+                        $errors++;
+                        \Message::addError ( "Zeile " . $lineNumber . ": Fehler beim Import: " . $e->getMessage() . " / " . implode ( $separator, $line));
+                    }
+                } else {
+                    \Message::addError ( "Zeile " . $linenumber . ": Informationen fehlen. Zeile: " . implode ( $separator, $line) . '  Trenner: ' . $separator);
                 }
             }
         }

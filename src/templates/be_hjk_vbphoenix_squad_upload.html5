@@ -26,6 +26,16 @@
 <input type="hidden" name="REQUEST_TOKEN" value="<?= REQUEST_TOKEN ?>">    
 
 <div class="tl_formbody_edit">
+
+
+<h3>Hinweis</h3>
+<p>
+Hier kann eine CSV-Datei mit den Staffel-Informationen hochgeladen werden. Die Datei sollte drei Spalten besitzen: Staffel-ID (von Phoenix), Saison, Name der Staffel. Die Reighenfolde der Staffeln ist wichtig!
+Zeile, bei denen die erste Spalte leer ist, werden ignoriert. Solche Zeilen können auch für Kommentare genutzt werden.
+<br />
+Eine CSV-Datei mit den Staffeln von 2016 ist über die Githup-Seite der Phponix-Erweiterung verfügbar.
+</p>
+
     
     <div class="tl_tbox">
       <h3>CSV-Datei</h3>

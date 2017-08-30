@@ -10,7 +10,7 @@ $GLOBALS['TL_LANG']['tl_hjk_vbphoenix_squadron'] = array (
     'down_schedule' => array ('Spielplan herunterladen','Herunterladen des Spielplans dieser Staffel erzwingen'),
     'down_results'  => array ('Ergebnisse herunterladen','Herunterladen der Ergbnisliste dieser Staffel erzwingen'),
     'down_preview'  => array ('Vorschau herunterladen','Herunterladen der Spieltagsvorschau dieser Staffel erzwingen'),
-    
+    'year'          => array ('Jahr','Anfangsjahr der Saison für diese Staffel'),
     // legends 
     'name_legend' => 'Name und ID',
     

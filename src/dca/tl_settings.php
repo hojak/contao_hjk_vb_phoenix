@@ -1,7 +1,7 @@
 <?php
 
 $GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] .= ';{hjk_vbphoenix_legend}'
-    .',hjk_vbphoenix_baseurl,hjk_vbphoenix_interval,hjk_vbphoenix_season'
+    .',hjk_vbphoenix_baseurl,hjk_vbphoenix_interval'
 ;    
 
 $GLOBALS['TL_DCA']['tl_settings']['fields']['hjk_vbphoenix_baseurl'] = array (
@@ -21,11 +21,3 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['hjk_vbphoenix_interval'] = array (
     'default'       => 10,
 );
 
-
-$GLOBALS['TL_DCA']['tl_settings']['fields']['hjk_vbphoenix_season'] = array (
-    'label'         => &$GLOBALS['TL_LANG']['tl_settings']['hjk_vbphoenix_season'],
-    'exclude'       => true,
-    'inputType'     => 'text',
-    'eval'          => array('mandatory' => true, 'tl_class' => 'w50','minval' => 2015, 'maxval' => 2040, 'rgxp' => 'natural'),
-    'default'       => date('Y'),
-);
