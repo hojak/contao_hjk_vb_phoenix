@@ -85,7 +85,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['hjk_vbphoenix_team'] = array (
     'inputType'               => 'select',
     'options_callback'        => array ('tl_content_vbphoenix','getVbPhoenixTeams'),
     'sql'                     => "varchar(255) NULL",
-    'eval'                    => array ('includeBlankOption' => true,'tl_class' => '',)
+    'eval'                    => array ('includeBlankOption' => true,'tl_class' => 'clr',)
 );
 
 
