@@ -38,10 +38,12 @@
   <tr <?= $classes ? ' class="' . implode(" ", $classes) . '"' : '' ?>>
    <td class="phoenix_game_day"><?= $entry->gameday ?></td>
    <td class="phoenix_game_id"><?= $entry->game_id ?></td>
-   <td class="phoenix_date"><?= $this->parseDate ( "l, d.m.Y", $entry->date ) ?></td>
-   <td class="pheonix_time"><?= $this->parseDate ("H:i", $entry->time_start) ?></td>
+   <td class="phoenix_date"><?= $entry->date ? $this->parseDate ( "l, d.m.Y", $entry->date )  : 'unbekannt' ?></td>
+   <td class="pheonix_time"><?= $entry->time_start ? $this->parseDate ("H:i", $entry->time_start) : 'unbekannt' ?></td>
    <td class="phoenix_home<?= $entry->team_home == $this->team ? ' phoenix_myteam': '' ?><?= $entry->hasHomeWon() ? ' phoenix_won': '' ?>"><?= $entry->team_home ?></td>
    <td class="phoenix_guest<?= $entry->team_guest == $this->team ? ' phoenix_myteam': '' ?><?= $entry->hasGuestWon() ? ' phoenix_won': '' ?>"><?= $entry->team_guest ?></td>
+   
+   <?php if ( $entry->hasResult () ): ?>
    <td class="phoenix_sets_home<?= $entry->hasHomeWon() ? ' phoenix_won': '' ?>"><?= $entry->sets_home ?></td>
    <td class="phoenix_sets_vs">:</td>
    <td class="phoenix_sets_guest<?= $entry->hasGuestWon() ? ' phoenix_won': '' ?>"><?= $entry->sets_guest ?></td>
@@ -51,6 +53,11 @@
    <td class="phoenix_rallies_vs">:</td>
    <td class="phoenix_rallies_guest<?= $entry->hasGuestWon($i) ? ' phoenix_won': '' ?>"><?= $entry->getRalliesGuest ( $i ) ?></td>
    <?php endfor; ?>
+   
+   <?php else: ?>
+   <td class="phoenix_no_result" colspan="8">&nbsp;</td>
+   <?php endif; ?>
+
   </tr>
 <?php endforeach; ?>
  </tbody>

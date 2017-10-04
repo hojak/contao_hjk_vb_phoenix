@@ -15,18 +15,22 @@
         <span class="phoenix_team phoenix_home <?= $entry->hasHomeWon() ? "phoenix_win" : "phoenix_lost" ?><?= $this->team == $entry->team_home ? " phoenix_myteam" : "" ?>"><?= $entry->team_home ?></span>
         <span class="phoenix_vs">&mdash;</span>
         <span class="phoenix_team phoenix_guest <?= $entry->hasGuestWon() ? "phoenix_win" : "phoenix_lost" ?><?= $this->team == $entry->team_guest ? " phoenix_myteam": "" ?>"><?= $entry->team_guest ?></span>
-    </div>
+    </div> 
     
     <div class="phoenix_date">
+        <?php if ( $entry->date): ?>
         <span class="phoenix_dow"><?= $this->parseDate ("l", $entry->date) ?></span>
         <span class="phoenix_date"><?= $this->parseDate ( "d.m.Y", $entry->date) ?></span>
         <span class="phoenix_time"><?= $this->parseDate ('H:i', $entry->time_start) ?></span>
         <?php if ( $entry->gym): ?>
           <span class="phoenix_gym"><?= $entry->gym ?></span>
         <?php endif; ?>
+        <?php else: ?>
+         Datum: unbekannt!
+        <?php endif; ?>
     </div>
     
-    <?php if ( $entry->result ): ?>
+    <?php if ( $entry->hasResult() ): ?>
     <div class="phoenix_result">
         <div class="phoenix_result_main">
             <span class="phoenix_sets phoenix_home <?= $entry->hasHomeWon() ? "phoenix_win" : "phoenix_lost" ?><?= $this->team == $entry->team_home ? " phoenix_myteam" : "" ?>"><?= $entry->sets_home ?></span>

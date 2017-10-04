@@ -9,13 +9,22 @@ abstract class AbstractResultModel extends \Model {
     
     
     private function _initSetResults () {
-        if ( $aSetResults ) return;
+        if ( $this->aSetResults ) return;
         
-        $this->aSetResults = preg_split ('#\\s*,\\s*#', $this->result );
+        if ( $this->result ) {
         
-        for ( $i=0; $i<sizeof ( $this->aSetResults); $i++ ) {
-            $this->aSetResults[$i] = explode ( ':', $this->aSetResults[$i]);
+            $this->aSetResults = preg_split ('#\\s*,\\s*#', $this->result );
+            
+            for ( $i=0; $i<sizeof ( $this->aSetResults); $i++ ) {
+                $this->aSetResults[$i] = explode ( ':', $this->aSetResults[$i]);
+            }
+        } else {
+            $this->aSetResults = array ();
         }
+    }
+    
+    public function hasResult() {
+        return true && $this->result;
     }
 
 
