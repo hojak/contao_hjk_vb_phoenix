@@ -33,7 +33,7 @@ class BEDownloads extends \Backend {
     }
     
     
-    protected function _createEvent ( $entry, $team, $download) {
+    protected function _createEvent ( $entry, $calendar, $team, $download) {
         $newEntry = new \CalendarEventsModel();
         $newEntry->pid       = $calendar->id;
         $newEntry->tstamp    = time();
@@ -53,7 +53,7 @@ class BEDownloads extends \Backend {
             $newEntry->vbphoenix_guest_ours = '1';
         
         $newEntry->save();
-        \Message::addInfo ( "Spiel ID " . $entry->game_id . " wurde neu angelegt");
+        \Message::addInfo ( "Spiel ID " . $entry->game_id . ", Event " . $newEntry->id . " wurde neu angelegt");
     }
     
     
@@ -97,7 +97,7 @@ class BEDownloads extends \Backend {
                             $this->_updateEvent ( $existing, $entry, $team );
                             $updated ++;
                         } else {
-                            $this->_createEvent ( $entry, $team, $download);
+                            $this->_createEvent ( $entry, $calendar, $team, $download);
                             $generated ++;
                         }
                     }
