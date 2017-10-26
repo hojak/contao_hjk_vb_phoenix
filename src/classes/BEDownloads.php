@@ -60,6 +60,7 @@ class BEDownloads extends \Backend {
                             $newEntry->startDate = $entry->time_start;
                             $newEntry->location  = $entry->gym;
                             $newEntry->vbphoenix_reference = $reference;
+                            $newEntry->published = '1';
                             
                             $newEntry->save();
                             \Message::addInfo ( "Spiel ID " . $entry->game_id . " wurde neu angelegt");
