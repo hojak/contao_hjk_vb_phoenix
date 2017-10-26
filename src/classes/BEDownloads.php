@@ -9,7 +9,58 @@ class BEDownloads extends \Backend {
     const CREATE_FORM_ID = 'vbphoenix_create_dates';
     const CREATE_TEMPLATE = 'be_hjk_vbphoenix_create_dates';
     
+    
+    
+    protected function _updateEvent ( $event, $entry, $team ) {
+        $event->title     = $entry->team_home . " – " . $entry->team_guest;
+        $event->location  = $entry->gym;
+        $event->startTime = $entry->time_start;
+        $event->startDate = $entry->time_start;
+        $event->author    = $this->User->id;
+
+        // just "enable" our flag, don't disable, to prevent unmarking team of matches inside the same club
+        if ( $entry->team_home == $team) {
+            $event->vbphoenix_home_ours = '1';
+        } elseif ( $entry->team_guest == $team )  {
+            $event->vbphoenix_guest_ours = '1';
+        } else {
+            \Message::addInfo ('no own team?!?!');
+        }
+        
+        $event->save();
+        
+        \Message::addInfo ( "Spiel ID " . $entry->game_id . ", Event " . $event->id . " wurde aktualisiert");
+    }
+    
+    
+    protected function _createEvent ( $entry, $team, $download) {
+        $newEntry = new \CalendarEventsModel();
+        $newEntry->pid       = $calendar->id;
+        $newEntry->tstamp    = time();
+        $newEntry->title     = $entry->team_home . " – " . $entry->team_guest;
+        $newEntry->addTime   = '1';
+        $newEntry->startTime = $entry->time_start;
+        $newEntry->startDate = $entry->time_start;
+        $newEntry->location  = $entry->gym;
+        $newEntry->published = '1';
+        $newEntry->vbphoenix_squadron = $download->squadron;
+        $newEntry->vbphoenix_gameid   = $entry->game_id;
+        $newEntry->author    = $this->User->id;
+        
+        if ( $entry->team_home == $team)
+            $newEntry->vbphoenix_home_ours = '1';
+        elseif ( $entry->team_guest == $team ) 
+            $newEntry->vbphoenix_guest_ours = '1';
+        
+        $newEntry->save();
+        \Message::addInfo ( "Spiel ID " . $entry->game_id . " wurde neu angelegt");
+    }
+    
+    
+    
     public function actionCreateDates () {
+        $this->import('BackendUser', 'User');
+        
         $id = \Input::get('id');
         $download = DownloadModel::findById ( $id );
         
@@ -40,30 +91,13 @@ class BEDownloads extends \Backend {
                     if ( $entry->team_home == $team || ( !$home_only && $entry->team_guest == $team )) {
                         $reference = $download->squadron . "/" . $download->season . "/" . $entry->game_id;
                         
-                        $existing = \CalendarEventsModel::findOneBy ( 'vbphoenix_reference', $reference );
+                        $existing = \CalendarEventsModel::findOneBy ( array('vbphoenix_squadron = ?','vbphoenix_gameid = ?'), array ( $download->squadron, $entry->game_id) );
+                        
                         if ( $existing ) {
-                            $existing->title     = $entry->team_home . " - " . $entry->team_guest;
-                            $existing->location  = $entry->gym;
-                            $existing->startTime = $entry->time_start;
-                            $existing->startDate = $entry->time_start;
-                            $existing->save();
-                            
-                            \Message::addInfo ( "Spiel ID " . $entry->game_id . " wurde aktualisiert");
+                            $this->_updateEvent ( $existing, $entry, $team );
                             $updated ++;
                         } else {
-                            $newEntry = new \CalendarEventsModel();
-                            $newEntry->pid       = $calendar->id;
-                            $newEntry->tstamp    = time();
-                            $newEntry->title     = $entry->team_home . " - " . $entry->team_guest;
-                            $newEntry->addTime   = '1';
-                            $newEntry->startTime = $entry->time_start;
-                            $newEntry->startDate = $entry->time_start;
-                            $newEntry->location  = $entry->gym;
-                            $newEntry->vbphoenix_reference = $reference;
-                            $newEntry->published = '1';
-                            
-                            $newEntry->save();
-                            \Message::addInfo ( "Spiel ID " . $entry->game_id . " wurde neu angelegt");
+                            $this->_createEvent ( $entry, $team, $download);
                             $generated ++;
                         }
                     }
@@ -92,6 +126,7 @@ class BEDownloads extends \Backend {
         return $this->Template->parse();        
     }
     
+        
     
     protected function _getCalendarOptions () {
         $dbResult = $this->Database->prepare ('select id, title from tl_calendar order by title')->execute();
