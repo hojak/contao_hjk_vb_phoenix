@@ -12,12 +12,13 @@ class CEResults extends \ContentElement {
         protected $strTemplate = 'ce_hjk_vbphoenix_game_list';
 
         public function generate () {
+            $this->squadron = SquadronModel::findById ( $this->hjk_vbphoenix_squadron);
             
             if ( TL_MODE == "BE") {
                 $template = new \BackendTemplate('be_wildcard');
 
                 $template->wildcard = 
-                        "### (HJK) VB-Phoenix: Ergebnisanzeige ###";
+                        "### (HJK) VB-Phoenix: Ergebnisanzeige (".$this->squadron->name.") ###";
                 
                 $template->type_published = array ("test");
                 $template->title = $this->headline;
@@ -37,11 +38,9 @@ class CEResults extends \ContentElement {
 
 
         protected function compile () {
-            $squadron = SquadronModel::findById ( $this->hjk_vbphoenix_squadron);
-            
-            $download = $squadron->getCurrentDownload ( "results", $this->hjk_vbphoenix_season);
+            $download = $this->squadron->getCurrentDownload ( "results", $this->hjk_vbphoenix_season);
 
-            $this->Template->squadron = $squadron;
+            $this->Template->squadron = $this->squadron;
 
             if ( $download ) {
                 if ( $this->hjk_vbphoenix_games != "all" && $this->hjk_vbphoenix_team ) {

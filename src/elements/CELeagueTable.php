@@ -13,12 +13,13 @@ class CELeagueTable extends \ContentElement {
 
 
         public function generate () {
+            $this->squadron = SquadronModel::findById ( $this->hjk_vbphoenix_squadron);
             
             if ( TL_MODE == "BE") {
                 $template = new \BackendTemplate('be_wildcard');
 
                 $template->wildcard = 
-                        "### (HJK) VB-Phoenix: Tabelle ###";
+                        "### (HJK) VB-Phoenix: Tabelle (".$this->squadron->name.") ###";
                 
                 $template->title = $this->headline;
                 $template->id = $this->id;
@@ -36,12 +37,9 @@ class CELeagueTable extends \ContentElement {
 
 
         protected function compile () {
+            $download = $this->squadron->getCurrentDownload ( "table", $this->hjk_vbphoenix_season);
             
-            $squadron = SquadronModel::findById ( $this->hjk_vbphoenix_squadron);
-            
-            $download = $squadron->getCurrentDownload ( "table", $this->hjk_vbphoenix_season);
-            
-            $this->Template->squadron = $squadron;
+            $this->Template->squadron = $this->squadron;
             
             if ( $download ) {
                 $this->Template->entries = $download->getDbEntries ();

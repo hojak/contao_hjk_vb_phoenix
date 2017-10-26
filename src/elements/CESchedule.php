@@ -19,12 +19,13 @@ class CESchedule extends \ContentElement {
 
 
         public function generate () {
+            $this->squadron = SquadronModel::findById ( $this->hjk_vbphoenix_squadron);
             
             if ( TL_MODE == "BE") {
                 $template = new \BackendTemplate('be_wildcard');
 
                 $template->wildcard = 
-                        "### (HJK) VB-Phoenix: Spielplan ###";
+                        "### (HJK) VB-Phoenix: Spielplan (".$this->squadron->name.") ###";
                 
                 $template->title = $this->headline;
                 $template->id = $this->id;
@@ -54,10 +55,8 @@ class CESchedule extends \ContentElement {
 
 
         protected function compile () {
-            $squadron = SquadronModel::findById ( $this->hjk_vbphoenix_squadron);
-            
-            $download = $squadron->getCurrentDownload ( "schedule", $this->hjk_vbphoenix_season);
-            $this->Template->squadron = $squadron;
+            $download = $this->squadron->getCurrentDownload ( "schedule", $this->hjk_vbphoenix_season);
+            $this->Template->squadron = $this->squadron;
             
             if ( $download ) {
                 
