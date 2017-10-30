@@ -15,7 +15,8 @@ class BEDownloads extends \Backend {
         $event->title     = $entry->team_home . " – " . $entry->team_guest;
         $event->location  = $entry->gym;
         $event->startTime = $entry->time_start;
-        $event->startDate = $entry->time_start;
+	$event->endTime   = $event->time_start;
+	$event->startDate = $entry->time_start;
         $event->author    = $this->User->id;
 
         // just "enable" our flag, don't disable, to prevent unmarking team of matches inside the same club
@@ -38,7 +39,8 @@ class BEDownloads extends \Backend {
         $newEntry->pid       = $calendar->id;
         $newEntry->tstamp    = time();
         $newEntry->title     = $entry->team_home . " – " . $entry->team_guest;
-        $newEntry->addTime   = '1';
+	$newEntry->addTime   = '1';
+	$newEntry->endTime   = $entry->time_start;
         $newEntry->startTime = $entry->time_start;
         $newEntry->startDate = $entry->time_start;
         $newEntry->location  = $entry->gym;
