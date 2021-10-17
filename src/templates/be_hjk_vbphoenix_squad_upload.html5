@@ -1,5 +1,4 @@
 <?php    
-    
     $separatorSelect = new \FormSelectMenu();
     $separatorSelect->id="separator";
     $separatorSelect->name="separator";
@@ -7,10 +6,9 @@
     $separatorSelect->mandatory = true;
     $separatorSelect->class="tl_select";
     $separatorSelect->options = array (
-        array('value' => ";", label=>";"),
-        array('value' => ",", label=>","),
+        array('value' => ";", 'label'=>";"),
+        array('value' => ",", 'label'=>","),
     );
-
 ?>           
 
       
